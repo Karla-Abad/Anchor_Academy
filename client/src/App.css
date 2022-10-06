@@ -23,14 +23,7 @@ html {
 
 hr {
   border: 1px solid lightgray;
-  margin: 20px 0;
-}
-
-p {
-  color: var(--color-body);
-  font-size: 2.25rem;
-  margin: 0;
-  max-width: 30ch;
+  margin: 25px 0;
 }
 
 .App {
@@ -41,8 +34,8 @@ p {
 /* Typography */
 
 ::selection {
-  background: var(--color-primary);
-  color: #fff;
+  background: #fff;
+  color: var(--color-body);
 }
 
 html {
@@ -96,17 +89,33 @@ h4 {
 /* Container */
 
 .container {
-  vertical-align: bottom;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  height: 100%;
+  max-width: 1200px;
 }
 
 .flex {
   align-items: center;
   display: flex;
-  justify-content: space-evenly;
-  margin: auto;
+  flex-direction: column;
   min-height: 640px;
-  width: 1024px;
+}
+
+.main--description {
+  color: var(--color-secondary);
+  font-size: 2.25rem;
+  margin: 10px 0;
+  max-width: 30ch;
+}
+
+@media screen and (min-width: 768px) {
+  .flex {
+    flex-direction: row;
+    margin: 0;
+    justify-content: space-evenly;
+  }
 }
 
 /* Forms */
@@ -116,7 +125,7 @@ form {
   border-radius: 5px;
   box-shadow: 0 2px 15px rgb(0 0 0 / 25%);
   padding: 15px;
-  width: 396px;
+  width: 320px;
   height: 300px;
 }
 
@@ -126,9 +135,14 @@ input {
   color: var(--color-body);
   display: block;
   font-size: 1.6rem;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  outline: none;
   padding: 10px;
   width: 100%;
+}
+
+input:focus {
+  border: 2px solid var(--color-accent--blue);
 }
 
 /* Buttons */
@@ -172,11 +186,20 @@ input {
 @media screen and (min-width: 660px) {
   .btn {
     font-size: 2rem;
-    padding-left: 5vw;
-    padding-right: 5vw;
+    padding-left: 35px;
+    padding-right: 35px;
   }
 }
 
-.login__foter {
+/* Login Page */
+
+.login__footer {
+  color: darkgray;
   background: white;
+  padding: 20px 20px;
+}
+
+.login__footer-text {
+  font-size: 1.2rem;
+  margin: 0;
 }
