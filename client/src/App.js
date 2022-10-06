@@ -1,10 +1,22 @@
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
 import LoginForm from "./components/loginForm";
+import Teachers from "./components/teachers";
+import RegisterForm from "./components/registerForm";
+import Students from "./components/students";
+import Navbar from "./components/navbar";
 
 function App() {
   return (
     <div className="App">
-      <LoginForm />
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} />
+        <Route element={<Navbar />}>
+          <Route path="/teachers" element={<Teachers />} />
+          <Route path="/students" element={<Students />} />
+        </Route>
+      </Routes>
     </div>
   );
 }

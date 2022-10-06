@@ -156,6 +156,7 @@ input:focus {
   line-height: 1.35;
   outline: 0;
   padding: 10px 10px;
+  text-decoration: none;
   white-space: nowrap;
 }
 
