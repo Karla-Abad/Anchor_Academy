@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import logo from "../images/logo-ANCLA.png";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { ReactComponent as Instagram } from "../images/instagram.svg";
-import { ReactComponent as Facebook } from "../images/facebook.svg";
-import { ReactComponent as Twitter } from "../images/twitter.svg";
-import { ReactComponent as Youtube } from "../images/youtube.svg";
+import axios from "axios";
+import Footer from "./footer";
+import Logo from "./logo";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -39,13 +36,7 @@ const LoginForm = () => {
   return (
     <div className="container">
       <div className="flex">
-        <div>
-          <img src={logo} alt="School Logo" />
-          <p className="main--description">
-            Keep track of enrolled students and teachers for the current school
-            year.
-          </p>
-        </div>
+        <Logo />
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -67,19 +58,7 @@ const LoginForm = () => {
           </Link>
         </form>
       </div>
-      <div className="login__footer">
-        <p className="login__footer-text">
-          Unidad Educativa Academia Naval Cap. Leonardo Abad A.
-        </p>
-        <p className="login__footer-text">Calle 19 y Avenida Malecon</p>
-        <p className="login__footer-text">La Libertad, Santa Elena - Ecuador</p>
-        <p className="login__footer-text">Telf: (04) 2777- 4875</p>
-        <hr />
-        <Instagram />
-        <Facebook />
-        <Twitter />
-        <Youtube />
-      </div>
+      <Footer />
     </div>
   );
 };
