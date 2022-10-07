@@ -22,6 +22,7 @@ html {
 }
 
 hr {
+  background-color: lightgray;
   border: 1px solid lightgray;
   margin: 25px 0;
 }
@@ -143,6 +144,15 @@ input {
 
 input:focus {
   border: 2px solid var(--color-accent--blue);
+}
+
+.error {
+  background: rgb(248, 211, 211);
+  border: 2px solid red;
+  border-radius: 5px;
+  color: red;
+  font-size: 1.3rem;
+  margin: 0 0 5px 0;
 }
 
 /* Buttons */

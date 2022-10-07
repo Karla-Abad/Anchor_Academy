@@ -35,11 +35,12 @@ const LoginForm = () => {
         setErrorMessage(err.response.data.message);
       });
   };
+
   return (
     <div className="container">
       <div className="flex">
         <div>
-          <img src={logo} />
+          <img src={logo} alt="School Logo" />
           <p className="main--description">
             Keep track of enrolled students and teachers for the current school
             year.
@@ -58,6 +59,7 @@ const LoginForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {errorMessage && <p className="error">{errorMessage}</p>}
           <button className="btn btn--stretched btn--blue">Log In</button>
           <hr></hr>
           <Link to={"/register"} className="btn btn--green">
