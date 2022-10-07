@@ -261,3 +261,46 @@ input:focus {
 .register__close:hover {
   cursor: pointer;
 }
+
+/* Navbar */
+nav {
+  align-items: center;
+  display: flex;
+  background: rgb(218, 216, 216);
+  justify-content: space-between;
+  padding: 10px 10px 5px 15px;
+}
+
+a {
+  border-radius: 3px;
+  border-bottom: 5px solid rgb(218, 216, 216);
+  color: black;
+  margin-right: 20px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.nav__menu-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav__logo {
+  width: 50px;
+  margin-right: 10px;
+}
+
+.navbar__logout {
+  color: white;
+  background: var(--color-secondary);
+  font-size: 1.5rem;
+  padding: 10px 15px;
+}
+
+.active {
+  box-shadow: 0 2px 15px rgb(0 0 0 / 25%);
+  color: var(--color-headings);
+  background: white;
+  font-weight: 600;
+  border-bottom: 5px solid var(--color-secondary);
+}
