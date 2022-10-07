@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "./footer";
 import Logo from "./logo";
+import RegisterForm from "./registerForm";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const [registerForm, setRegisterForm] = useState(false);
 
   const navigate = useNavigate();
 
@@ -17,8 +20,8 @@ const LoginForm = () => {
       .post(
         "http://localhost:8000/api/users/login",
         {
-          email: email,
-          password: password,
+          email,
+          password,
         },
         { withCredentials: true }
       )
@@ -33,34 +36,74 @@ const LoginForm = () => {
       });
   };
 
-  return (
-    <div className="container">
-      <div className="flex">
-        <Logo />
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {errorMessage && <p className="error">{errorMessage}</p>}
-          <button className="btn btn--stretched btn--blue">Log In</button>
-          <hr></hr>
-          <Link to={"/register"} className="btn btn--green">
-            Register
-          </Link>
-        </form>
+  const handleOpenForm = () => {
+    setRegisterForm(!registerForm);
+  };
+
+  if (!registerForm) {
+    return (
+      <div className="container">
+        <div className="flex">
+          <Logo />
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {errorMessage && <p className="error">{errorMessage}</p>}
+            <button className="btn btn--stretched btn--blue">Log In</button>
+            <hr></hr>
+            <div className="btn btn--green" onClick={handleOpenForm}>
+              Register
+            </div>
+          </form>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-  );
+    );
+  }
+
+  if (registerForm) {
+    return (
+      <div>
+        <RegisterForm onOpenForm={handleOpenForm} />
+        <div className="container">
+          <div className="flex">
+            <Logo />
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {errorMessage && <p className="error">{errorMessage}</p>}
+              <button className="btn btn--stretched btn--blue">Log In</button>
+              <hr></hr>
+              <div className="btn btn--green" onClick={handleOpenForm}>
+                Register
+              </div>
+            </form>
+          </div>
+          <Footer />
+        </div>
+      </div>
+    );
+  }
 };
 
 export default LoginForm;
