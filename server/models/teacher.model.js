@@ -23,7 +23,13 @@ const TeacherSchema = new mongoose.Schema(
     },
     section: {
       type: String,
-      enum: ["Select a section", "Early Education", "Elementary"],
+      enum: [
+        "Select a section",
+        "Early Education",
+        "Elementary",
+        "Middle School",
+        "High School",
+      ],
       default: "Select a section",
       required: [true, "Section is required"],
     },

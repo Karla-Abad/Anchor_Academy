@@ -344,3 +344,44 @@ th,
 td {
   padding: 10px 10px;
 }
+
+/* Pagination */
+
+.pagination__navbar {
+  background: var(--color-primary);
+}
+
+.pagination__list {
+  border-radius: 5px;
+  display: flex;
+  cursor: pointer;
+  list-style: none;
+  margin: auto;
+  padding: 5px;
+}
+
+.pagination__item {
+  background: white;
+  border-bottom: 5px solid var(--color-secondary);
+  border-radius: 5px;
+  margin: 3px;
+  padding: 10px;
+  transition: background 0.3s;
+}
+
+.pagination__anchor {
+  border: none;
+  color: var(--color-headings);
+  font-weight: 600;
+  margin: 0;
+  transition: color 0.3s;
+}
+
+.pagination--active {
+  background: var(--color-secondary);
+  border-bottom: 5px solid white;
+}
+
+.anchor--active {
+  color: white;
+}

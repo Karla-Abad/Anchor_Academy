@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Pagination from "./common/pagination";
+import { paginate } from "../utils/paginate";
 
 const Teachers = () => {
   const [teachers, setTeachers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(2);
+  const count = teachers.length;
 
   useEffect(() => {
     axios
@@ -15,6 +20,15 @@ const Teachers = () => {
         console.log(err);
       });
   }, []);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  if (count === 0)
+    return <p className="error">There are no Teachers in the Database.</p>;
+
+  const paginatedTeachers = paginate(teachers, currentPage, pageSize);
 
   return (
     <section>
@@ -30,7 +44,7 @@ const Teachers = () => {
           </tr>
         </thead>
         <tbody>
-          {teachers.map((teacher) => (
+          {paginatedTeachers.map((teacher) => (
             <tr key={teacher._id}>
               <td>{teacher.firstName}</td>
               <td>{teacher.middleName}</td>
@@ -44,6 +58,12 @@ const Teachers = () => {
           ))}
         </tbody>
       </table>
+      <Pagination
+        itemsCount={count}
+        pageSize={pageSize}
+        onPageChange={handlePageChange}
+        currentPage={currentPage}
+      />
     </section>
   );
 };
