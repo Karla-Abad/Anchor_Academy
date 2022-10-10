@@ -4,6 +4,7 @@ import axios from "axios";
 import Footer from "./footer";
 import Logo from "./logo";
 import RegisterForm from "./registerForm";
+import Form from "./common/form";
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
@@ -45,26 +46,15 @@ const LoginForm = (props) => {
       <div className="container">
         <div className="flex">
           <Logo />
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {errorMessage && <p className="error">{errorMessage}</p>}
-            <button className="btn btn--stretched btn--blue">Log In</button>
-            <hr></hr>
-            <div className="btn btn--green" onClick={handleOpenForm}>
-              Register
-            </div>
-          </form>
+          <Form
+            onSubmit={handleSubmit}
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            errorMessage={errorMessage}
+            onOpenForm={handleOpenForm}
+          />
         </div>
         <Footer />
       </div>
@@ -78,26 +68,15 @@ const LoginForm = (props) => {
         <div className="container">
           <div className="flex">
             <Logo />
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              {errorMessage && <p className="error">{errorMessage}</p>}
-              <button className="btn btn--stretched btn--blue">Log In</button>
-              <hr></hr>
-              <div className="btn btn--green" onClick={handleOpenForm}>
-                Register
-              </div>
-            </form>
+            <Form
+              onSubmit={handleSubmit}
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+              errorMessage={errorMessage}
+              onOpenForm={handleOpenForm}
+            />
           </div>
           <Footer />
         </div>

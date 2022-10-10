@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const RegisterForm = (props) => {
+const RegisterForm = ({ onOpenForm }) => {
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -50,7 +50,7 @@ const RegisterForm = (props) => {
       <form onSubmit={handleSubmit} className="register__form">
         <div className="register__flex">
           <h1 className="register__title">Register Here</h1>
-          <p className="register__close" onClick={props.onOpenForm}>
+          <p className="register__close" onClick={onOpenForm}>
             X
           </p>
         </div>
