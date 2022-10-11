@@ -136,7 +136,8 @@ form {
   height: 300px;
 }
 
-input {
+input,
+select {
   border: 1px solid rgb(230, 228, 228);
   border-radius: 5px;
   color: var(--color-body);
@@ -243,13 +244,15 @@ table .btn--table {
 
 /* Login */
 
-.login__footer {
+.login__footer,
+.footer {
   color: darkgray;
   background: white;
   padding: 20px 20px;
 }
 
-.login__footer-text {
+.login__footer-text,
+.footer {
   font-size: 1.2rem;
   margin: 0;
 }

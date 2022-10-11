@@ -31,7 +31,7 @@ const TeacherSchema = new mongoose.Schema(
         "High School",
       ],
       default: "Select a section",
-      required: [true, "Section is required"],
+      required: [true, "Section is required."],
     },
     salary: {
       type: Number,

@@ -3,7 +3,7 @@ import { paginate } from "../utils/paginate";
 import axios from "axios";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/listGroup";
-import TeachersTable from "./teachersTable";
+// import TeachersTable from "./teachersTable";
 import UpdateTeacher from "./updateTeacher";
 
 const Teachers = () => {
@@ -32,7 +32,7 @@ const Teachers = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [updateForm]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -82,7 +82,7 @@ const Teachers = () => {
           />
         </div>
         <div>
-          <p className="success message">
+          <p className="message">
             Showing {filtered.length} teacher(s) in the database.
           </p>
           <table>
