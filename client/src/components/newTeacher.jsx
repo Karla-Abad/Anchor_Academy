@@ -27,11 +27,12 @@ const NewTeacher = ({ onOpenNewForm }) => {
       })
       .then((res) => {
         console.log(res.data);
+        setErrors({});
         setConfirmTeacher("You have created a new teacher.");
       })
       .catch((err) => {
-        console.log(err.response.data.errors);
-        setErrors(err.response.data.errors);
+        console.log(err.response.data.err.errors);
+        setErrors(err.response.data.err.errors);
       });
   };
 
@@ -51,9 +52,9 @@ const NewTeacher = ({ onOpenNewForm }) => {
           value={newTeacher.firstName}
           onChange={(e) => handleInputChange(e)}
         />
-        {/* {errors.firstName && (
+        {errors.firstName && (
           <p className="error">{errors.firstName.message}</p>
-        )} */}
+        )}
         <input
           type="text"
           placeholder="Middle Name"
@@ -61,9 +62,9 @@ const NewTeacher = ({ onOpenNewForm }) => {
           value={newTeacher.middleName}
           onChange={(e) => handleInputChange(e)}
         />
-        {/* {errors.middleName && (
+        {errors.middleName && (
           <p className="error">{errors.middleName.message}</p>
-        )} */}
+        )}
         <input
           type="text"
           placeholder="Last Name"
@@ -71,7 +72,7 @@ const NewTeacher = ({ onOpenNewForm }) => {
           value={newTeacher.lastName}
           onChange={(e) => handleInputChange(e)}
         />
-        {/* {errors.lastName && <p className="error">{errors.lastName.message}</p>} */}
+        {errors.lastName && <p className="error">{errors.lastName.message}</p>}
         <input
           type="text"
           placeholder="YYYY-MM-DD"
@@ -79,9 +80,9 @@ const NewTeacher = ({ onOpenNewForm }) => {
           value={newTeacher.dateOfBirth}
           onChange={(e) => handleInputChange(e)}
         />
-        {/* {errors.dateOfBirth && (
+        {errors.dateOfBirth && (
           <p className="error">{errors.dateOfBirth.message}</p>
-        )} */}
+        )}
         <select
           name="section"
           value={newTeacher.section}
@@ -93,7 +94,7 @@ const NewTeacher = ({ onOpenNewForm }) => {
           <option>Middle School</option>
           <option>High School</option>
         </select>
-        {/* {errors.section && <p className="error">{errors.section.message}</p>} */}
+        {errors.section && <p className="error">{errors.section.message}</p>}
         <input
           type="number"
           placeholder="Salary"
@@ -101,7 +102,7 @@ const NewTeacher = ({ onOpenNewForm }) => {
           value={newTeacher.salary}
           onChange={(e) => handleInputChange(e)}
         />
-        {/* {errors.salary && <p className="error">{errors.salary.message}</p>} */}
+        {errors.salary && <p className="error">{errors.salary.message}</p>}
         {confirmTeacher && <p className="success">{confirmTeacher}</p>}
         <button className="btn btn--stretched btn--green">New Teacher</button>
       </form>
