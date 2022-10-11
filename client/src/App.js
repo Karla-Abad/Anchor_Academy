@@ -31,6 +31,9 @@ function App() {
       .then((res) => {
         console.log(res, "res");
         console.log(res.data, "is res data!");
+        setEmail("");
+        setPassword("");
+        setErrorMessage("");
         setCurrentUser(res.data.userLoggedIn);
         navigate("/teachers");
       })
