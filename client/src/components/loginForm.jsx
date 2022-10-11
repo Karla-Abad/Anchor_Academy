@@ -6,36 +6,44 @@ import Logo from "./logo";
 import RegisterForm from "./registerForm";
 import Form from "./common/form";
 
-const LoginForm = (props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+const LoginForm = ({
+  onSubmit,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  errorMessage,
+  setErrorMessage,
+}) => {
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [errorMessage, setErrorMessage] = useState("");
 
   const [registerForm, setRegisterForm] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .post(
-        "http://localhost:8000/api/users/login",
-        {
-          email,
-          password,
-        },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        console.log(res, "res");
-        console.log(res.data, "is res data!");
-        navigate("/teachers");
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-        setErrorMessage(err.response.data.message);
-      });
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post(
+  //       "http://localhost:8000/api/users/login",
+  //       {
+  //         email,
+  //         password,
+  //       },
+  //       { withCredentials: true }
+  //     )
+  //     .then((res) => {
+  //       console.log(res, "res");
+  //       console.log(res.data, "is res data!");
+  //       navigate("/teachers");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.response.data);
+  //       setErrorMessage(err.response.data.message);
+  //     });
+  // };
 
   const handleOpenForm = () => {
     setRegisterForm(!registerForm);
@@ -47,7 +55,7 @@ const LoginForm = (props) => {
         <div className="flex">
           <Logo />
           <Form
-            onSubmit={handleSubmit}
+            onSubmit={onSubmit}
             email={email}
             setEmail={setEmail}
             password={password}
@@ -69,7 +77,7 @@ const LoginForm = (props) => {
           <div className="flex">
             <Logo />
             <Form
-              onSubmit={handleSubmit}
+              onSubmit={onSubmit}
               email={email}
               setEmail={setEmail}
               password={password}

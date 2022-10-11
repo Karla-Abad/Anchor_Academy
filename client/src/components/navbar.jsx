@@ -1,9 +1,12 @@
 import logo from "../images/logo-ANCLA.png";
 import axios from "axios";
+import React, { useContext } from "react";
+import UserContext from "../context/userContext";
 import { Outlet } from "react-router-dom";
 import { NavLink, useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const currentUser = useContext(UserContext);
   const navigate = useNavigate();
 
   const logout = (e) => {
@@ -28,7 +31,7 @@ const Navbar = () => {
             Teachers
           </NavLink>
           <NavLink to="/students">Students</NavLink>
-          <h1 className="form__title">Welcome back, username!</h1>
+          <h1 className="form__title">Welcome back, {currentUser}!</h1>
         </div>
         <button onClick={logout} className="btn navbar__logout">
           Logout

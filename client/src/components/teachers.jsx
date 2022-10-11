@@ -33,7 +33,7 @@ const Teachers = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [updateForm]);
+  }, [updateForm, newForm]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
