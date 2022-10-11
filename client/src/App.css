@@ -170,6 +170,11 @@ input:focus {
   margin: 0 0 5px 0;
 }
 
+.message {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 /* Buttons */
 .btn {
   border-radius: 5px;
