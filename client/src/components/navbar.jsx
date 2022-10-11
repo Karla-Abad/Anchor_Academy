@@ -28,6 +28,7 @@ const Navbar = () => {
             Teachers
           </NavLink>
           <NavLink to="/students">Students</NavLink>
+          <h1 className="form__title">Welcome back, username!</h1>
         </div>
         <button onClick={logout} className="btn navbar__logout">
           Logout

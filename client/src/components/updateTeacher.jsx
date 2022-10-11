@@ -1,18 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const UpdateTeacher = ({
-  onOpenUpdateForm,
-  teachers,
-  teacherToUpdate,
-  setTeacherToUpdate,
-}) => {
+const UpdateTeacher = ({ onOpenUpdateForm, teacherToUpdate }) => {
   const [errors, setErrors] = useState({});
   const [teacher, setTeacher] = useState(teacherToUpdate);
   const [confirmUpdate, setConfirmUpdate] = useState("");
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -93,9 +85,9 @@ const UpdateTeacher = ({
         {errors.lastName && <p className="error">{errors.lastName.message}</p>}
         <input
           type="text"
-          placeholder="Date of Birth"
+          placeholder="YYYY-MM-DD"
           name="dateOfBirth"
-          value={teacher.dateOfBirth}
+          value={teacher.dateOfBirth.substr(0, 10)}
           onChange={(e) => handleInputChange(e)}
         />
         {errors.dateOfBirth && (
@@ -121,8 +113,8 @@ const UpdateTeacher = ({
         />
         {errors.salary && <p className="error">{errors.salary.message}</p>}
         {confirmUpdate && <p className="success">{confirmUpdate}</p>}
-        <button className="btn btn--stretched btn--green">Update</button>
         <p className="footer">Created By: {teacherToUpdate.createdBy.email}</p>
+        <button className="btn btn--stretched btn--green">Update</button>
       </form>
     </div>
   );

@@ -5,6 +5,7 @@ import Pagination from "./common/pagination";
 import ListGroup from "./common/listGroup";
 // import TeachersTable from "./teachersTable";
 import UpdateTeacher from "./updateTeacher";
+import NewTeacher from "./newTeacher";
 
 const Teachers = () => {
   const [teachers, setTeachers] = useState([]);
@@ -13,6 +14,7 @@ const Teachers = () => {
   const [pageSize, setPageSize] = useState(3);
   const [selectedSection, setSelectedSection] = useState("");
   const [updateForm, setUpdateForm] = useState(false);
+  const [newForm, setNewForm] = useState(false);
   const sections = [
     "All Sections",
     "Early Education",
@@ -20,7 +22,6 @@ const Teachers = () => {
     "Middle School",
     "High School",
   ];
-  // const count = teachers.length;
 
   useEffect(() => {
     axios
@@ -63,6 +64,11 @@ const Teachers = () => {
     setUpdateForm(!updateForm);
   };
 
+  const handleOpenNewForm = () => {
+    setNewForm(!newForm);
+  };
+  console.log(newForm);
+
   const filtered =
     selectedSection && selectedSection !== "All Sections"
       ? teachers.filter((t) => t.section === selectedSection)
@@ -70,11 +76,13 @@ const Teachers = () => {
 
   const paginatedTeachers = paginate(filtered, currentPage, pageSize);
 
-  if (!updateForm) {
+  if (!updateForm && !newForm) {
     return (
       <section>
         <div>
-          <button className="btn btn--green">New Teacher</button>
+          <button className="btn btn--green" onClick={handleOpenNewForm}>
+            New Teacher
+          </button>
           <ListGroup
             items={sections}
             onItemSelect={handleSectionSelect}
@@ -83,7 +91,7 @@ const Teachers = () => {
         </div>
         <div>
           <p className="message">
-            Showing {filtered.length} teacher(s) in the database.
+            Showing <span>{filtered.length}</span> teacher(s) in the database.
           </p>
           <table>
             <thead>
@@ -136,12 +144,75 @@ const Teachers = () => {
       <section>
         <UpdateTeacher
           onOpenUpdateForm={handleOpenUpdateForm}
-          teachers={filtered}
           teacherToUpdate={teacherToUpdate}
-          setTeacherToUpdate={setTeacherToUpdate}
         />
         <div>
-          <button className="btn btn--green">New Teacher</button>
+          <button className="btn btn--green" onClick={handleOpenNewForm}>
+            New Teacher
+          </button>
+          <ListGroup
+            items={sections}
+            onItemSelect={handleSectionSelect}
+            selectedItem={selectedSection}
+          />
+        </div>
+        <div>
+          <p className="success message">
+            Showing {filtered.length} teacher(s) in the database.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>First</th>
+                <th>Middle</th>
+                <th>Last</th>
+                <th>Section</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {paginatedTeachers.map((teacher) => (
+                <tr key={teacher._id}>
+                  <td>{teacher.firstName}</td>
+                  <td>{teacher.middleName}</td>
+                  <td>{teacher.lastName}</td>
+                  <td>{teacher.section}</td>
+                  <td>
+                    <button
+                      className="btn btn--blue btn--table"
+                      onClick={() => handleOpenUpdateForm(teacher)}
+                    >
+                      Update
+                    </button>
+                    <button
+                      className="btn btn--red btn--table"
+                      onClick={() => handleDelete(teacher)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <Pagination
+            itemsCount={filtered.length}
+            pageSize={pageSize}
+            onPageChange={handlePageChange}
+            currentPage={currentPage}
+          />
+        </div>
+      </section>
+    );
+  }
+  if (newForm) {
+    return (
+      <section>
+        <NewTeacher onOpenNewForm={handleOpenNewForm} />
+        <div>
+          <button className="btn btn--green" onClick={handleOpenNewForm}>
+            New Teacher
+          </button>
           <ListGroup
             items={sections}
             onItemSelect={handleSectionSelect}

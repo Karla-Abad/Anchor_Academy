@@ -172,8 +172,18 @@ input:focus {
 }
 
 .message {
+  background: white;
+  border-radius: 5px;
+  color: var(--color-secondary);
   font-size: 2rem;
   font-weight: 600;
+  margin: 0 0 30px;
+  padding: 10px;
+}
+
+.message span {
+  color: var(--color-accent--blue);
+  text-decoration: underline;
 }
 
 /* Buttons */
@@ -244,17 +254,21 @@ table .btn--table {
 
 /* Login */
 
-.login__footer,
-.footer {
+.login__footer {
   color: darkgray;
   background: white;
-  padding: 20px 20px;
+  padding: 10px 20px;
 }
 
 .login__footer-text,
 .footer {
   font-size: 1.2rem;
   margin: 0;
+}
+
+.footer {
+  color: darkgray;
+  padding-bottom: 10px;
 }
 
 /* Register */
@@ -278,13 +292,14 @@ table .btn--table {
 .register__title {
   color: var(--color-body);
   font-size: 2.8rem;
+  margin: 0;
 }
 
 .register__flex {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin: 0 0 10px 0;
+  margin: 0 0 15px 0;
 }
 
 .register__close {
@@ -346,6 +361,7 @@ table {
   background-color: #fff;
   font-size: 2rem;
   margin: 0 auto;
+  min-width: 609.176px;
   text-align: left;
 }
 
@@ -420,4 +436,13 @@ td {
 .listGroup__item--active {
   color: white;
   background: var(--color-secondary);
+}
+
+/* Update Teacher */
+
+.form__title {
+  color: var(--color-secondary);
+  font-size: 1.8rem;
+  margin: 0 0 0 15px;
+  padding: 5px 0;
 }
