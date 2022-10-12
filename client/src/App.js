@@ -44,7 +44,9 @@ function App() {
   };
 
   return (
-    <UserContext.Provider value={currentUser}>
+    <UserContext.Provider
+      value={{ currentUser: currentUser, onSubmit: handleSubmit }}
+    >
       <div className="App">
         <Routes>
           <Route

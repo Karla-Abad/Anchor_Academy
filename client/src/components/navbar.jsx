@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = (props) => {
-  const currentUser = useContext(UserContext);
+  const loggedInUser = useContext(UserContext);
   const navigate = useNavigate();
 
   const logout = (e) => {
@@ -23,7 +23,7 @@ const Navbar = (props) => {
       });
   };
 
-  console.log(currentUser);
+  console.log(loggedInUser);
   return (
     <div>
       <nav>
@@ -33,7 +33,10 @@ const Navbar = (props) => {
             Teachers
           </NavLink>
           <NavLink to="/students">Students</NavLink>
-          <h1 className="form__title">Welcome back, {currentUser}!</h1>
+          <h1 className="form__title">
+            Welcome back,{" "}
+            {loggedInUser.currentUser ? loggedInUser.currentUser : ""}!
+          </h1>
         </div>
         <button onClick={logout} className="btn navbar__logout">
           Logout

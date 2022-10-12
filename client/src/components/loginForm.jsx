@@ -18,8 +18,9 @@ const LoginForm = ({
     setRegisterForm(!registerForm);
   };
 
-  if (!registerForm) {
-    return (
+  return (
+    <div>
+      {registerForm && <RegisterForm onOpenForm={handleOpenForm} />}
       <div className="container">
         <div className="flex">
           <Logo />
@@ -35,31 +36,8 @@ const LoginForm = ({
         </div>
         <Footer />
       </div>
-    );
-  }
-
-  if (registerForm) {
-    return (
-      <div>
-        <RegisterForm onOpenForm={handleOpenForm} />
-        <div className="container">
-          <div className="flex">
-            <Logo />
-            <Form
-              onSubmit={onSubmit}
-              email={email}
-              setEmail={setEmail}
-              password={password}
-              setPassword={setPassword}
-              errorMessage={errorMessage}
-              onOpenForm={handleOpenForm}
-            />
-          </div>
-          <Footer />
-        </div>
-      </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default LoginForm;
