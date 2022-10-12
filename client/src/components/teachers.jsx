@@ -74,14 +74,7 @@ const Teachers = () => {
     setNewForm(!newForm);
   };
 
-  const handleSort = (path) => {
-    const column = { ...sortColumn };
-    if (column.path === path) {
-      column.order = column.order === "asc" ? "desc" : "asc";
-    } else {
-      column.path = path;
-      column.order = "asc";
-    }
+  const handleSort = (column) => {
     setSortColumn({ path: column.path, order: column.order });
   };
 
@@ -113,6 +106,7 @@ const Teachers = () => {
           </p>
           <TeachersTable
             teachers={paginatedTeachers}
+            sortColumn={sortColumn}
             onOpenUpdateForm={handleOpenUpdateForm}
             onDelete={handleDelete}
             onSort={handleSort}
@@ -151,6 +145,7 @@ const Teachers = () => {
           </p>
           <TeachersTable
             teachers={paginatedTeachers}
+            sortColumn={sortColumn}
             onOpenUpdateForm={handleOpenUpdateForm}
             onDelete={handleDelete}
           />
@@ -184,6 +179,7 @@ const Teachers = () => {
           </p>
           <TeachersTable
             teachers={paginatedTeachers}
+            sortColumn={sortColumn}
             onOpenUpdateForm={handleOpenUpdateForm}
             onDelete={handleDelete}
           />
