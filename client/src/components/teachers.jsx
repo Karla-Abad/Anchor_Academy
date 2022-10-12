@@ -87,112 +87,45 @@ const Teachers = () => {
 
   const paginatedTeachers = paginate(sorted, currentPage, pageSize);
 
-  if (!updateForm && !newForm) {
-    return (
-      <section>
-        <div>
-          <button className="btn btn--green" onClick={handleOpenNewForm}>
-            New Teacher
-          </button>
-          <ListGroup
-            items={sections}
-            onItemSelect={handleSectionSelect}
-            selectedItem={selectedSection}
-          />
-        </div>
-        <div>
-          <p className="message">
-            Showing <span>{filtered.length}</span> teacher(s) in the database.
-          </p>
-          <TeachersTable
-            teachers={paginatedTeachers}
-            sortColumn={sortColumn}
-            onOpenUpdateForm={handleOpenUpdateForm}
-            onDelete={handleDelete}
-            onSort={handleSort}
-          />
-          <Pagination
-            itemsCount={filtered.length}
-            pageSize={pageSize}
-            onPageChange={handlePageChange}
-            currentPage={currentPage}
-          />
-        </div>
-      </section>
-    );
-  }
-
-  if (updateForm) {
-    return (
-      <section>
+  return (
+    <section>
+      {updateForm && (
         <UpdateTeacher
           onOpenUpdateForm={handleOpenUpdateForm}
           teacherToUpdate={teacherToUpdate}
         />
-        <div>
-          <button className="btn btn--green" onClick={handleOpenNewForm}>
-            New Teacher
-          </button>
-          <ListGroup
-            items={sections}
-            onItemSelect={handleSectionSelect}
-            selectedItem={selectedSection}
-          />
-        </div>
-        <div>
-          <p className="success message">
-            Showing {filtered.length} teacher(s) in the database.
-          </p>
-          <TeachersTable
-            teachers={paginatedTeachers}
-            sortColumn={sortColumn}
-            onOpenUpdateForm={handleOpenUpdateForm}
-            onDelete={handleDelete}
-          />
-          <Pagination
-            itemsCount={filtered.length}
-            pageSize={pageSize}
-            onPageChange={handlePageChange}
-            currentPage={currentPage}
-          />
-        </div>
-      </section>
-    );
-  }
-  if (newForm) {
-    return (
-      <section>
-        <NewTeacher onOpenNewForm={handleOpenNewForm} />
-        <div>
-          <button className="btn btn--green" onClick={handleOpenNewForm}>
-            New Teacher
-          </button>
-          <ListGroup
-            items={sections}
-            onItemSelect={handleSectionSelect}
-            selectedItem={selectedSection}
-          />
-        </div>
-        <div>
-          <p className="success message">
-            Showing {filtered.length} teacher(s) in the database.
-          </p>
-          <TeachersTable
-            teachers={paginatedTeachers}
-            sortColumn={sortColumn}
-            onOpenUpdateForm={handleOpenUpdateForm}
-            onDelete={handleDelete}
-          />
-          <Pagination
-            itemsCount={filtered.length}
-            pageSize={pageSize}
-            onPageChange={handlePageChange}
-            currentPage={currentPage}
-          />
-        </div>
-      </section>
-    );
-  }
+      )}
+      {newForm && <NewTeacher onOpenNewForm={handleOpenNewForm} />}
+      <div>
+        <button className="btn btn--green" onClick={handleOpenNewForm}>
+          New Teacher
+        </button>
+        <ListGroup
+          items={sections}
+          onItemSelect={handleSectionSelect}
+          selectedItem={selectedSection}
+        />
+      </div>
+      <div>
+        <p className="message">
+          Showing <span>{filtered.length}</span> teacher(s) in the database.
+        </p>
+        <TeachersTable
+          teachers={paginatedTeachers}
+          sortColumn={sortColumn}
+          onOpenUpdateForm={handleOpenUpdateForm}
+          onDelete={handleDelete}
+          onSort={handleSort}
+        />
+        <Pagination
+          itemsCount={filtered.length}
+          pageSize={pageSize}
+          onPageChange={handlePageChange}
+          currentPage={currentPage}
+        />
+      </div>
+    </section>
+  );
 };
 
 export default Teachers;
