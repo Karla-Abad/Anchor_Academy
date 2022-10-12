@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TableHeader from "./common/tableHeader";
+import TableBody from "./common/tableBody";
 class TeachersTable extends Component {
   columns = [
     { path: "firstName", label: "First" },
@@ -19,7 +20,8 @@ class TeachersTable extends Component {
           sortColumn={sortColumn}
           onSort={onSort}
         />
-        <tbody>
+        <TableBody data={teachers} columns={this.columns} />
+        {/* <tbody>
           {teachers.map((teacher) => (
             <tr key={teacher._id}>
               <td>{teacher.firstName}</td>
@@ -42,7 +44,7 @@ class TeachersTable extends Component {
               </td>
             </tr>
           ))}
-        </tbody>
+        </tbody> */}
       </table>
     );
   }
