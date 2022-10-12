@@ -1,3 +1,5 @@
+import Input from "./input";
+
 const Form = ({
   onSubmit,
   loggedInUser,
@@ -10,16 +12,18 @@ const Form = ({
 }) => {
   return (
     <form onSubmit={onSubmit}>
-      <input
+      <Input
         type="text"
-        placeholder="Email"
+        name="email"
         value={email}
+        label="Email"
         onChange={(e) => setEmail(e.target.value)}
       />
-      <input
+      <Input
         type="password"
-        placeholder="Password"
+        name="password"
         value={password}
+        label="Password"
         onChange={(e) => setPassword(e.target.value)}
       />
       {errorMessage && <p className="error">{errorMessage}</p>}

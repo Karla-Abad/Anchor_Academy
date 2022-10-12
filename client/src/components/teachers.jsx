@@ -6,6 +6,7 @@ import ListGroup from "./common/listGroup";
 import UpdateTeacher from "./updateTeacher";
 import NewTeacher from "./newTeacher";
 import TeachersTable from "./teachersTable";
+import SearchBox from "./common/searchBox";
 import _ from "lodash";
 
 const Teachers = () => {
@@ -16,6 +17,7 @@ const Teachers = () => {
   const [selectedSection, setSelectedSection] = useState("");
   const [updateForm, setUpdateForm] = useState(false);
   const [newForm, setNewForm] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const [sortColumn, setSortColumn] = useState({
     path: "firstName",
     order: "asc",
@@ -47,6 +49,7 @@ const Teachers = () => {
 
   const handleSectionSelect = (section) => {
     setSelectedSection(section);
+    setSearchQuery("");
     setCurrentPage(1);
   };
 
@@ -78,10 +81,24 @@ const Teachers = () => {
     setSortColumn({ path: column.path, order: column.order });
   };
 
-  const filtered =
-    selectedSection && selectedSection !== "All Sections"
-      ? teachers.filter((t) => t.section === selectedSection)
-      : teachers;
+  const handleSearch = (query) => {
+    setCurrentPage(1);
+    setSelectedSection("");
+    setSearchQuery(query);
+  };
+
+  let filtered = teachers;
+  if (searchQuery)
+    filtered = teachers.filter((t) =>
+      t.lastName.toLowerCase().startsWith(searchQuery.toLowerCase())
+    );
+  else if (selectedSection && selectedSection !== "All Sections")
+    filtered = teachers.filter((t) => t.section === selectedSection);
+
+  // const filtered =
+  //   selectedSection && selectedSection !== "All Sections"
+  //     ? teachers.filter((t) => t.section === selectedSection)
+  //     : teachers;
 
   const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
 
@@ -110,6 +127,7 @@ const Teachers = () => {
         <p className="message">
           Showing <span>{filtered.length}</span> teacher(s) in the database.
         </p>
+        <SearchBox value={searchQuery} onChange={handleSearch} />
         <TeachersTable
           teachers={paginatedTeachers}
           sortColumn={sortColumn}
