@@ -3,9 +3,10 @@ import { paginate } from "../utils/paginate";
 import axios from "axios";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/listGroup";
-// import TeachersTable from "./teachersTable";
 import UpdateTeacher from "./updateTeacher";
 import NewTeacher from "./newTeacher";
+import TeachersTable from "./teachersTable";
+import _ from "lodash";
 
 const Teachers = () => {
   const [teachers, setTeachers] = useState([]);
@@ -15,6 +16,11 @@ const Teachers = () => {
   const [selectedSection, setSelectedSection] = useState("");
   const [updateForm, setUpdateForm] = useState(false);
   const [newForm, setNewForm] = useState(false);
+  const [sortColumn, setSortColumn] = useState({
+    path: "firstName",
+    order: "asc",
+  });
+
   const sections = [
     "All Sections",
     "Early Education",
@@ -67,14 +73,26 @@ const Teachers = () => {
   const handleOpenNewForm = () => {
     setNewForm(!newForm);
   };
-  console.log(newForm);
+
+  const handleSort = (path) => {
+    const column = { ...sortColumn };
+    if (column.path === path) {
+      column.order = column.order === "asc" ? "desc" : "asc";
+    } else {
+      column.path = path;
+      column.order = "asc";
+    }
+    setSortColumn({ path: column.path, order: column.order });
+  };
 
   const filtered =
     selectedSection && selectedSection !== "All Sections"
       ? teachers.filter((t) => t.section === selectedSection)
       : teachers;
 
-  const paginatedTeachers = paginate(filtered, currentPage, pageSize);
+  const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
+
+  const paginatedTeachers = paginate(sorted, currentPage, pageSize);
 
   if (!updateForm && !newForm) {
     return (
@@ -93,41 +111,12 @@ const Teachers = () => {
           <p className="message">
             Showing <span>{filtered.length}</span> teacher(s) in the database.
           </p>
-          <table>
-            <thead>
-              <tr>
-                <th>First</th>
-                <th>Middle</th>
-                <th>Last</th>
-                <th>Section</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {paginatedTeachers.map((teacher) => (
-                <tr key={teacher._id}>
-                  <td>{teacher.firstName}</td>
-                  <td>{teacher.middleName}</td>
-                  <td>{teacher.lastName}</td>
-                  <td>{teacher.section}</td>
-                  <td>
-                    <button
-                      className="btn btn--blue btn--table"
-                      onClick={() => handleOpenUpdateForm(teacher)}
-                    >
-                      Update
-                    </button>
-                    <button
-                      className="btn btn--red btn--table"
-                      onClick={() => handleDelete(teacher)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <TeachersTable
+            teachers={paginatedTeachers}
+            onOpenUpdateForm={handleOpenUpdateForm}
+            onDelete={handleDelete}
+            onSort={handleSort}
+          />
           <Pagination
             itemsCount={filtered.length}
             pageSize={pageSize}
@@ -160,41 +149,11 @@ const Teachers = () => {
           <p className="success message">
             Showing {filtered.length} teacher(s) in the database.
           </p>
-          <table>
-            <thead>
-              <tr>
-                <th>First</th>
-                <th>Middle</th>
-                <th>Last</th>
-                <th>Section</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {paginatedTeachers.map((teacher) => (
-                <tr key={teacher._id}>
-                  <td>{teacher.firstName}</td>
-                  <td>{teacher.middleName}</td>
-                  <td>{teacher.lastName}</td>
-                  <td>{teacher.section}</td>
-                  <td>
-                    <button
-                      className="btn btn--blue btn--table"
-                      onClick={() => handleOpenUpdateForm(teacher)}
-                    >
-                      Update
-                    </button>
-                    <button
-                      className="btn btn--red btn--table"
-                      onClick={() => handleDelete(teacher)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <TeachersTable
+            teachers={paginatedTeachers}
+            onOpenUpdateForm={handleOpenUpdateForm}
+            onDelete={handleDelete}
+          />
           <Pagination
             itemsCount={filtered.length}
             pageSize={pageSize}
@@ -223,41 +182,11 @@ const Teachers = () => {
           <p className="success message">
             Showing {filtered.length} teacher(s) in the database.
           </p>
-          <table>
-            <thead>
-              <tr>
-                <th>First</th>
-                <th>Middle</th>
-                <th>Last</th>
-                <th>Section</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {paginatedTeachers.map((teacher) => (
-                <tr key={teacher._id}>
-                  <td>{teacher.firstName}</td>
-                  <td>{teacher.middleName}</td>
-                  <td>{teacher.lastName}</td>
-                  <td>{teacher.section}</td>
-                  <td>
-                    <button
-                      className="btn btn--blue btn--table"
-                      onClick={() => handleOpenUpdateForm(teacher)}
-                    >
-                      Update
-                    </button>
-                    <button
-                      className="btn btn--red btn--table"
-                      onClick={() => handleDelete(teacher)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <TeachersTable
+            teachers={paginatedTeachers}
+            onOpenUpdateForm={handleOpenUpdateForm}
+            onDelete={handleDelete}
+          />
           <Pagination
             itemsCount={filtered.length}
             pageSize={pageSize}
