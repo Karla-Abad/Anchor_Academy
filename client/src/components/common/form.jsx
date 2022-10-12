@@ -1,5 +1,6 @@
 const Form = ({
   onSubmit,
+  loggedInUser,
   email,
   setEmail,
   password,
@@ -22,7 +23,12 @@ const Form = ({
         onChange={(e) => setPassword(e.target.value)}
       />
       {errorMessage && <p className="error">{errorMessage}</p>}
-      <button className="btn btn--stretched btn--blue">Log In</button>
+      <button
+        onClick={(e) => loggedInUser.onSubmit(e)}
+        className="btn btn--stretched btn--blue"
+      >
+        Log In
+      </button>
       <hr></hr>
       <div className="btn btn--green" onClick={onOpenForm}>
         Register

@@ -1,13 +1,26 @@
 import logo from "../images/logo-ANCLA.png";
 import axios from "axios";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import UserContext from "../context/userContext";
 import { Outlet } from "react-router-dom";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = (props) => {
   const loggedInUser = useContext(UserContext);
+  const [user, setUser] = useState({});
   const navigate = useNavigate();
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/users/secure", { withCredentials: true })
+      .then((res) => {
+        console.log(res.data);
+        setUser(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const logout = (e) => {
     axios
@@ -23,7 +36,7 @@ const Navbar = (props) => {
       });
   };
 
-  console.log(loggedInUser);
+  console.log(loggedInUser.currentUser);
   return (
     <div>
       <nav>
@@ -33,10 +46,7 @@ const Navbar = (props) => {
             Teachers
           </NavLink>
           <NavLink to="/students">Students</NavLink>
-          <h1 className="form__title">
-            Welcome back,{" "}
-            {loggedInUser.currentUser ? loggedInUser.currentUser : ""}!
-          </h1>
+          <h1 className="form__title">Welcome back, {user.username}!</h1>
         </div>
         <button onClick={logout} className="btn navbar__logout">
           Logout

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Footer from "./footer";
 import Logo from "./logo";
 import RegisterForm from "./registerForm";
 import Form from "./common/form";
+import UserContext from "./../context/userContext";
 
 const LoginForm = ({
   onSubmit,
@@ -13,6 +14,7 @@ const LoginForm = ({
   errorMessage,
 }) => {
   const [registerForm, setRegisterForm] = useState(false);
+  const loggedInUser = useContext(UserContext);
 
   const handleOpenForm = () => {
     setRegisterForm(!registerForm);
@@ -26,6 +28,7 @@ const LoginForm = ({
           <Logo />
           <Form
             onSubmit={onSubmit}
+            loggedInUser={loggedInUser}
             email={email}
             setEmail={setEmail}
             password={password}
