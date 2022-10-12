@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import TableHeader from "./common/tableHeader";
-import TableBody from "./common/tableBody";
+import Table from "./common/table";
+
 class TeachersTable extends Component {
   columns = [
     { path: "firstName", label: "First" },
@@ -35,14 +35,12 @@ class TeachersTable extends Component {
     const { teachers, onSort, sortColumn } = this.props;
 
     return (
-      <table>
-        <TableHeader
-          columns={this.columns}
-          sortColumn={sortColumn}
-          onSort={onSort}
-        />
-        <TableBody data={teachers} columns={this.columns} />
-      </table>
+      <Table
+        columns={this.columns}
+        data={teachers}
+        sortColumn={sortColumn}
+        onSort={onSort}
+      />
     );
   }
 }

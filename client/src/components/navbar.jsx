@@ -22,6 +22,8 @@ const Navbar = (props) => {
         navigate("/");
       });
   };
+
+  console.log(currentUser);
   return (
     <div>
       <nav>
