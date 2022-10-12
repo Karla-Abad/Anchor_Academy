@@ -7,11 +7,32 @@ class TeachersTable extends Component {
     { path: "middleName", label: "Middle" },
     { path: "lastName", label: "Last" },
     { path: "section", label: "Section" },
-    { key: "actions", label: "Actions" },
+    {
+      key: "update",
+      label: "Actions",
+      content: (teacher) => (
+        <button
+          className="btn btn--blue btn--table"
+          onClick={() => this.props.onOpenUpdateForm(teacher)}
+        >
+          Update
+        </button>
+      ),
+    },
+    {
+      key: "delete",
+      content: (teacher) => (
+        <button
+          className="btn btn--red btn--table"
+          onClick={() => this.props.onDelete(teacher)}
+        >
+          Delete
+        </button>
+      ),
+    },
   ];
   render() {
-    const { teachers, onDelete, onOpenUpdateForm, onSort, sortColumn } =
-      this.props;
+    const { teachers, onSort, sortColumn } = this.props;
 
     return (
       <table>
@@ -21,30 +42,6 @@ class TeachersTable extends Component {
           onSort={onSort}
         />
         <TableBody data={teachers} columns={this.columns} />
-        {/* <tbody>
-          {teachers.map((teacher) => (
-            <tr key={teacher._id}>
-              <td>{teacher.firstName}</td>
-              <td>{teacher.middleName}</td>
-              <td>{teacher.lastName}</td>
-              <td>{teacher.section}</td>
-              <td>
-                <button
-                  className="btn btn--blue btn--table"
-                  onClick={() => onOpenUpdateForm(teacher)}
-                >
-                  Update
-                </button>
-                <button
-                  className="btn btn--red btn--table"
-                  onClick={() => onDelete(teacher)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody> */}
       </table>
     );
   }
