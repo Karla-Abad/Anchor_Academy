@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Footer from "./footer";
 import Logo from "./logo";
 import RegisterForm from "./registerForm";
@@ -13,37 +11,8 @@ const LoginForm = ({
   password,
   setPassword,
   errorMessage,
-  setErrorMessage,
 }) => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [errorMessage, setErrorMessage] = useState("");
-
   const [registerForm, setRegisterForm] = useState(false);
-
-  // const navigate = useNavigate();
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post(
-  //       "http://localhost:8000/api/users/login",
-  //       {
-  //         email,
-  //         password,
-  //       },
-  //       { withCredentials: true }
-  //     )
-  //     .then((res) => {
-  //       console.log(res, "res");
-  //       console.log(res.data, "is res data!");
-  //       navigate("/teachers");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.response.data);
-  //       setErrorMessage(err.response.data.message);
-  //     });
-  // };
 
   const handleOpenForm = () => {
     setRegisterForm(!registerForm);
