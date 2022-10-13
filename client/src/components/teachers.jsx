@@ -7,6 +7,7 @@ import UpdateTeacher from "./updateTeacher";
 import NewTeacher from "./newTeacher";
 import TeachersTable from "./teachersTable";
 import SearchBox from "./common/searchBox";
+import { sections } from "../utils/sections";
 import _ from "lodash";
 
 const Teachers = () => {
@@ -22,14 +23,6 @@ const Teachers = () => {
     path: "firstName",
     order: "asc",
   });
-
-  const sections = [
-    "All Sections",
-    "Early Education",
-    "Elementary",
-    "Middle School",
-    "High School",
-  ];
 
   useEffect(() => {
     axios
@@ -63,7 +56,6 @@ const Teachers = () => {
           (t) => t._id !== teacher._id
         );
         setTeachers(allTeachers);
-        console.log(teachers);
       })
       .catch((err) => console.log(err));
   };
@@ -94,11 +86,6 @@ const Teachers = () => {
     );
   else if (selectedSection && selectedSection !== "All Sections")
     filtered = teachers.filter((t) => t.section === selectedSection);
-
-  // const filtered =
-  //   selectedSection && selectedSection !== "All Sections"
-  //     ? teachers.filter((t) => t.section === selectedSection)
-  //     : teachers;
 
   const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
 
