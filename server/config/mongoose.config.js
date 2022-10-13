@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
 mongoose
-  .connect(`mongodb://localhost/${process.env.DB_NAME}`, {
+  .connect(`mongodb://localhost/AnchorAcademy_db`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() =>
     console.log(
-      `Established a connection to the database called ${process.env.DB_NAME}.`
+      `Established a connection to the database called AnchorAcademy_db.`
     )
   )
   .catch((err) =>

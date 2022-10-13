@@ -56,7 +56,7 @@ module.exports = {
                         username: userRecord.username,
                       },
                       // wee need the scret key to sign the payload and make sure our information is secured.
-                      process.env.JWT_SECRET
+                      "kajfd1234fg564rjdfa87954djiemceiwo"
                     ),
                     {
                       //we will make sure these cookies are "httpOnly". This means that the cookes are essentially invisible to client-side JavaScript and can only be read by the server.

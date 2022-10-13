@@ -3,7 +3,8 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
-// const port = 8000;
+const port = 8000;
+// Replacing process.env.MY_PORT
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -23,6 +24,6 @@ require("./routes/user.routes")(app);
 require("./routes/student.routes")(app);
 require("./routes/teacher.routes")(app);
 
-app.listen(process.env.MY_PORT, () => {
-  console.log(`Express server running on port ${process.env.MY_PORT}`);
+app.listen(port, () => {
+  console.log(`Express server running on port ${port}`);
 });

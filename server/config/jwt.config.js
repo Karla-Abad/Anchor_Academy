@@ -4,7 +4,7 @@ module.exports = {
   authenticate(req, res, next) {
     jwt.verify(
       req.cookies.usertoken,
-      process.env.JWT_SECRET,
+      "kajfd1234fg564rjdfa87954djiemceiwo",
       (err, payload) => {
         if (err) {
           console.log(err);
