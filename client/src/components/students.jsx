@@ -14,7 +14,7 @@ const Students = () => {
   const [students, setStudents] = useState([]);
   const [studentToUpdate, setStudentToUpdate] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(8);
   const [selectedGrade, setSelectedGrade] = useState("");
   const [updateForm, setUpdateForm] = useState(false);
   const [newForm, setNewForm] = useState(false);
