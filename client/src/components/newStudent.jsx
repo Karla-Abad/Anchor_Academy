@@ -79,7 +79,7 @@ const NewStudent = ({ onOpenNewForm }) => {
         />
         {errors.lastName && <p className="error">{errors.lastName.message}</p>}
         <input
-          type="text"
+          type="date"
           placeholder="YYYY-MM-DD"
           name="dateOfBirth"
           value={newStudent.dateOfBirth}
