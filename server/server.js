@@ -24,6 +24,6 @@ require("./routes/user.routes")(app);
 require("./routes/student.routes")(app);
 require("./routes/teacher.routes")(app);
 
-app.listen(port, () => {
-  console.log(`Express server running on port ${port}`);
+app.listen(process.env.PORT || port, () => {
+  console.log(`Express server running.`);
 });
