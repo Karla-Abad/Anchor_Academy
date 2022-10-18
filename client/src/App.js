@@ -21,7 +21,7 @@ function App() {
     e.preventDefault();
     axios
       .post(
-        "https://anchor-academy.herokuapp.com/api/users/login",
+        `${process.env.REACT_APP_BACKEND_URL}api/users/login`,
         {
           email,
           password,
@@ -38,7 +38,7 @@ function App() {
         navigate("/teachers");
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
         setErrorMessage(err.response.data.message);
       });
   };

@@ -26,7 +26,7 @@ const Teachers = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/teachers")
+      .get(`${process.env.REACT_APP_BACKEND_URL}api/teachers`)
       .then((res) => {
         console.log(res.data.allTeachers);
         setTeachers(res.data.allTeachers);
@@ -50,7 +50,7 @@ const Teachers = () => {
     const originalTeachers = teachers;
 
     axios
-      .delete(`http://localhost:8000/api/teacher/${teacher._id}`)
+      .delete(`${process.env.REACT_APP_BACKEND_URL}api/teacher/${teacher._id}`)
       .then((res) => {
         const allTeachers = originalTeachers.filter(
           (t) => t._id !== teacher._id

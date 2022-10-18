@@ -27,7 +27,7 @@ const NewStudent = ({ onOpenNewForm }) => {
   const handleCreateStudent = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/api/students", newStudent, {
+      .post(`${process.env.REACT_APP_BACKEND_URL}api/students`, newStudent, {
         withCredentials: true,
       })
       .then((res) => {

@@ -9,9 +9,12 @@ const UpdateStudent = ({ onOpenUpdateForm, studentToUpdate }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/student/${studentToUpdate._id}`, {
-        withCredentials: true,
-      })
+      .get(
+        `${process.env.REACT_APP_BACKEND_URL}api/student/${studentToUpdate._id}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setStudent(res.data);
@@ -28,7 +31,7 @@ const UpdateStudent = ({ onOpenUpdateForm, studentToUpdate }) => {
   const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8000/api/student/${student._id}`, {
+      .put(`${process.env.REACT_APP_BACKEND_URL}api/student/${student._id}`, {
         firstName: student.firstName,
         middleName: student.middleName,
         lastName: student.lastName,

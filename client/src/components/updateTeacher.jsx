@@ -8,9 +8,12 @@ const UpdateTeacher = ({ onOpenUpdateForm, teacherToUpdate }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/teacher/${teacherToUpdate._id}`, {
-        withCredentials: true,
-      })
+      .get(
+        `${process.env.REACT_APP_BACKEND_URL}api/teacher/${teacherToUpdate._id}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setTeacher(res.data);
@@ -27,7 +30,7 @@ const UpdateTeacher = ({ onOpenUpdateForm, teacherToUpdate }) => {
   const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8000/api/teacher/${teacher._id}`, {
+      .put(`${process.env.REACT_APP_BACKEND_URL}api/teacher/${teacher._id}`, {
         firstName: teacher.firstName,
         middleName: teacher.middleName,
         lastName: teacher.lastName,

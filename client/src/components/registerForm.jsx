@@ -17,7 +17,7 @@ const RegisterForm = ({ onOpenForm }) => {
 
     axios
       .post(
-        "https://anchor-academy.herokuapp.com/api/users/register",
+        `${process.env.REACT_APP_BACKEND_URL}api/users/register`,
         {
           username,
           firstName,
@@ -45,6 +45,7 @@ const RegisterForm = ({ onOpenForm }) => {
         setErrors(err.response.data.errors);
       });
   };
+
   return (
     <div className="register__container">
       <form onSubmit={handleSubmit} className="register__form">

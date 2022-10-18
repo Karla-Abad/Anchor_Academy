@@ -78,13 +78,13 @@ module.exports = {
             })
             .catch((err) => {
               console.log(err);
-              res.status(400).json({ message: "Invalid attempt" });
+              res.status(400).json({ message: "1 Invalid attempt" });
             });
         }
       })
       .catch((err) => {
         console.log(err);
-        res.status(400).json({ message: "Invalid attempt" });
+        res.status(400).json({ message: "2 Invalid attempt" });
       });
   },
 

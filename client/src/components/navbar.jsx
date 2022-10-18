@@ -12,7 +12,9 @@ const Navbar = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/users/secure", { withCredentials: true })
+      .get(`${process.env.REACT_APP_BACKEND_URL}api/users/secure`, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log(res.data);
         setUser(res.data);
@@ -25,7 +27,7 @@ const Navbar = (props) => {
   const logout = (e) => {
     axios
       .post(
-        "http://localhost:8000/api/users/logout",
+        `${process.env.REACT_APP_BACKEND_URL}api/users/logout`,
         {},
         { withCredentials: true }
       )

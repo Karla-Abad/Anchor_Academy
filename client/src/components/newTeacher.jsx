@@ -22,7 +22,7 @@ const NewTeacher = ({ onOpenNewForm }) => {
   const handleCreateTeacher = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/api/teachers", newTeacher, {
+      .post(`${process.env.REACT_APP_BACKEND_URL}api/teachers`, newTeacher, {
         withCredentials: true,
       })
       .then((res) => {
