@@ -60,7 +60,7 @@ module.exports = {
                     ),
                     {
                       //we will make sure these cookies are "httpOnly". This means that the cookes are essentially invisible to client-side JavaScript and can only be read by the server.
-                      httpOnly: true,
+                      // httpOnly: true,
                       // Even if user doesnt logout, cookie will be cleared automatically in set time.
                       expires: new Date(Date.now() + 90000000),
                     }
