@@ -17,7 +17,7 @@ const RegisterForm = ({ onOpenForm }) => {
 
     axios
       .post(
-        "http://localhost:8000/api/users/register",
+        "https://anchor-academy.herokuapp.com/api/users/register",
         {
           username,
           firstName,
