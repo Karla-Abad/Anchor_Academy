@@ -78,7 +78,8 @@ module.exports = {
             })
             .catch((err) => {
               console.log(err);
-              res.status(400).json({ message: "1 Invalid attempt" });
+              res.status(400).json(err);
+              // res.status(400).json({ message: "1 Invalid attempt" });
             });
         }
       })
